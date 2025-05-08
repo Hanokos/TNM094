@@ -4,7 +4,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Arial', sans-serif;
-  font-size: 90%; /* Reduce base font size to 90% */
+  font-size: 95%; /* slightly reduced from default */
 }
 
 body {
@@ -36,31 +36,31 @@ body {
 
 .content-box {
   background-color: rgba(255, 255, 255, 0.9);
-  padding: 18px; /* slightly reduced */
+  padding: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   margin-top: 30px;
   width: 80%;
   max-width: 800px;
-  font-size: 90%; /* shrink content text */
+  font-size: 95%;
 }
 
 input[type="file"] {
-  margin-right: 8px;
-  padding: 8px;
-  border-radius: 4px;
+  margin-right: 10px;
+  padding: 9px;
+  border-radius: 5px;
   border: 1px solid #ccc;
-  font-size: 90%;
+  font-size: 95%;
 }
 
 button:not(.info-btn):not(.close-btn):not(.nav-link):not(.pagination-btn) {
   background-color: #3498db;
   color: white;
   border: none;
-  padding: 8px 16px; /* smaller button size */
+  padding: 9px 18px;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 90%;
+  font-size: 95%;
 }
 
 button:not(.info-btn):not(.close-btn):not(.nav-link):not(.pagination-btn):hover {
@@ -71,8 +71,8 @@ button:not(.info-btn):not(.close-btn):not(.nav-link):not(.pagination-btn):hover 
   border: 3px solid #ffffff;
   border-top: 3px solid #3498db;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   animation: spin 1s linear infinite;
   margin: 20px auto;
 }
@@ -82,9 +82,20 @@ button:not(.info-btn):not(.close-btn):not(.nav-link):not(.pagination-btn):hover 
   100% { transform: rotate(360deg); }
 }
 
-/* Scale down Plotly and Chart.js elements if needed */
+/* Plotly and Chart.js scaling */
 .js-plotly-plot,
 .chartjs-render-monitor {
-  transform: scale(0.9);
+  transform: scale(0.95);
   transform-origin: top left;
+}
+
+/* Diagram Container */
+.diagram-container {
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+  margin: 20px auto;
+  padding: 10px;
+  overflow-x: auto;
+  overflow-y: visible;
 }
