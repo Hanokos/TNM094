@@ -36,10 +36,11 @@
   },
 "scripts": {
   "start": "react-scripts start",
-  "build": "react-scripts build",
+  "build": "NODE_ENV=development GENERATE_SOURCEMAP=false INLINE_RUNTIME_CHUNK=false react-scripts build",
   "test": "react-scripts test",
   "eject": "react-scripts eject"
-},
+}
+,
   "eslintConfig": {
     "extends": [
       "react-app",
