@@ -12,12 +12,8 @@ body {
   min-height: 100vh;
   width: 100%;
   position: relative;
-  margin: 0;
-  overflow: hidden; /* Prevent any overflow */
-  height: 100vh; /* Ensure body takes full viewport height */
-  display: flex;
-  justify-content: center;
-  align-items: flex-start; /* Align content at the top */
+  /* No scaling on body anymore */
+  overflow-x: hidden;  /* Prevent horizontal scrolling */
 }
 
 /* Main Content Styles */
@@ -27,14 +23,13 @@ body {
   margin-left: 250px; /* Default sidebar width */
   display: flex;
   justify-content: center;
-  align-items: flex-start;  /* Align content at the top */
+  align-items: center;
   min-height: 100vh;
   text-align: center;
   transition: margin-left 0.3s ease;
-  width: 100%;
-  max-width: 100%;
-  transform: scale(0.9); /* Scale down content but not the container */
-  transform-origin: top left; /* Ensure the scaling is done from the top-left corner */
+  /* Scale down content without affecting layout */
+  transform: scale(0.9);
+  transform-origin: top left; /* Keep content aligned from the top-left */
 }
 
 /* When sidebar is collapsed */
