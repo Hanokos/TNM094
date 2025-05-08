@@ -79,10 +79,7 @@ button:not(.info-btn):not(.close-btn):not(.nav-link):not(.pagination-btn):hover 
 }
 
 
-/* Zoom out the whole React tree */
+/* globally shrink entire React tree without breaking fixed‐position */
 #root {
-  transform: scale(0.9);
-  transform-origin: top left;
-  /* counter-scale width so it still fills viewport */
-  width: 111.11%;
+  zoom: 0.9;
 }
