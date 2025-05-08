@@ -1,12 +1,14 @@
 {
-    "builds": [
-      {
-        "src": "frontend/package.json",
-        "use": "@vercel/static-build"
+  "builds": [
+    {
+      "src": "frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "devCommand": "npm start"  // This will start the app in development mode like `npm start`
       }
-    ],
-    "env": {
-      "NODE_ENV": "development"
     }
+  ],
+  "env": {
+    "NODE_ENV": "development"  // Set environment to development mode
   }
-  
+}
