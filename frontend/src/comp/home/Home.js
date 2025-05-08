@@ -36,7 +36,7 @@ function Home() {
           <strong>NOTE:</strong> For a quick tutorial, click the info button in the top-right corner.
         </h3>
         <p>
-          Download our sample data file in our zip (file updated <em>2025-05-07</em>) :
+          Download our sample data file from our zip (file updated <em>2025-05-07</em>) :
           <a href="/example2025.7z" download>Example Data File</a>
         </p>
         <p>
