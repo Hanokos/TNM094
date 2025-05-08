@@ -23,7 +23,7 @@ nltk.download('stopwords')
 app = FastAPI()
 
 # Define allowed origins for CORS (Cross-Origin Resource Sharing)
-origins = ["http://localhost:3000"]
+origins = ["https://dart-xi.vercel.app/"]
 
 # Add middleware to allow CORS requests from specific origins
 app.add_middleware(
