@@ -1,3 +1,4 @@
+// src/components/visualize/diagram/Diagram.js
 import React, { useState, useMemo } from 'react';
 import Plot from 'react-plotly.js';
 import './Diagram.css';
@@ -12,11 +13,16 @@ const Diagram = ({ data }) => {
   const [selectedGroup, setSelectedGroup] = useState('category');
   const [threeD, setThreeD] = useState(false);
 
+  // Compute all years present in the data
   const allYears = useMemo(() => {
-    const yrs = data.map(p => parseInt(p.year, 10)).filter(y => !isNaN(y)).sort((a, b) => a - b);
+    const yrs = data
+      .map(p => parseInt(p.year, 10))
+      .filter(y => !isNaN(y))
+      .sort((a, b) => a - b);
     return Array.from(new Set(yrs));
   }, [data]);
 
+  // Build a contiguous range of years
   const yearRange = useMemo(() => {
     if (!allYears.length) return [];
     const [minY, maxY] = [allYears[0], allYears[allYears.length - 1]];
@@ -25,15 +31,14 @@ const Diagram = ({ data }) => {
     return r;
   }, [allYears]);
 
-  const minYear = yearRange[0];
-  const maxYear = yearRange[yearRange.length - 1];
-
+  // Count occurrences by group per year
   const countsByGroup = useMemo(() => {
     const counts = {};
     yearRange.forEach(y => (counts[y] = {}));
     data.forEach(row => {
       const y = parseInt(row.year, 10);
       if (isNaN(y)) return;
+
       let keys = [];
       if (selectedGroup === 'category') {
         keys = row.scbsCategories?.length ? row.scbsCategories : ['None'];
@@ -45,12 +50,15 @@ const Diagram = ({ data }) => {
         const g = row.gender && row.gender !== '-' ? row.gender : 'Unknown';
         keys = [g];
       }
+
       keys.forEach(k => {
         counts[y][k] = (counts[y][k] || 0) + 1;
       });
     });
+
     const groups = new Set();
     Object.values(counts).forEach(o => Object.keys(o).forEach(k => groups.add(k)));
+
     const result = {};
     groups.forEach(g => {
       result[g] = yearRange.map(y => counts[y][g] || 0);
@@ -58,10 +66,14 @@ const Diagram = ({ data }) => {
     return result;
   }, [data, selectedGroup, yearRange]);
 
+  // Find the maximum count for axis scaling
   const maxCount = useMemo(() => {
-    return Object.values(countsByGroup).flat().reduce((m, v) => Math.max(m, v), 0);
+    return Object.values(countsByGroup)
+      .flat()
+      .reduce((m, v) => Math.max(m, v), 0);
   }, [countsByGroup]);
 
+  // Handle tab clicks
   const onTabClick = key => {
     setSelectedGroup(key);
     if (key !== 'organization') {
@@ -69,10 +81,12 @@ const Diagram = ({ data }) => {
     }
   };
 
+  // If no data, show message
   if (!yearRange.length || !Object.keys(countsByGroup).length) {
     return <div className="diagram-container">No data available.</div>;
   }
 
+  // Color palette
   const colors = [
     'rgb(120, 230, 230)', 'rgb(255, 142, 244)', 'rgb(129, 83, 15)', 'rgb(187, 255, 98)',
     'rgb(0, 255, 136)', '#edc949', 'rgb(232, 28, 99)', 'rgb(150, 251, 147)',
@@ -82,11 +96,15 @@ const Diagram = ({ data }) => {
     'rgb(37, 77, 255)'
   ];
 
-  const truncate = (str, max = 14) => str.length > max ? str.slice(0, max) + '...' : str;
+  // Helper to truncate long labels
+  const truncate = (str, max = 14) =>
+    str.length > max ? str.slice(0, max) + '...' : str;
 
+  // Prepare Plotly data, layout, and config
   let plotData, layout, config;
 
   if (selectedGroup === 'organization' && threeD) {
+    // 3D scatter
     const totals = Object.entries(countsByGroup)
       .map(([org, arr]) => ({ org, total: arr.reduce((a, b) => a + b, 0) }))
       .sort((a, b) => b.total - a.total);
@@ -120,7 +138,7 @@ const Diagram = ({ data }) => {
         },
         yaxis: {
           title: { text: 'Year', standoff: 15 },
-          range: [minYear, maxYear + 5],
+          range: [yearRange[0], yearRange[yearRange.length - 1] + 5],
           automargin: true
         },
         zaxis: {
@@ -129,10 +147,12 @@ const Diagram = ({ data }) => {
           automargin: true
         }
       },
-      height: 600
+      height: 600,
+      autosize: true
     };
     config = { responsive: true };
   } else {
+    // 2D line + marker chart
     const totalsArr = Object.entries(countsByGroup)
       .map(([k, arr]) => ({ key: k, total: arr.reduce((a, b) => a + b, 0) }))
       .sort((a, b) => b.total - a.total);
@@ -152,21 +172,30 @@ const Diagram = ({ data }) => {
     }));
 
     layout = {
-      xaxis: { title: { text: 'Year', standoff: 10 }, tickmode: 'linear', automargin: true },
-      yaxis: { title: { text: 'Count', standoff: 10 }, range: [0, maxCount + 100], automargin: true },
+      xaxis: {
+        title: { text: 'Year', standoff: 10 },
+        tickmode: 'linear',
+        automargin: true
+      },
+      yaxis: {
+        title: { text: 'Count', standoff: 10 },
+        range: [0, maxCount + 100],
+        automargin: true
+      },
       hovermode: 'x unified',
       margin: { l: 80, r: 20, b: 60, t: 40, pad: 10 },
       height: 600,
       legend: {
         itemwidth: 100,
-        itemclick: "toggleothers",
-        itemdoubleclick: "toggle",
+        itemclick: 'toggleothers',
+        itemdoubleclick: 'toggle',
         font: { size: 12 },
         title: {
           text: '(Click on their color line)<br>(to remove or add them) <br> <br> Groups:',
-          font: { size: 13 } // Adjust font size if necessary
+          font: { size: 13 }
         }
-      }
+      },
+      autosize: true
     };
     config = { responsive: true };
   }
@@ -195,6 +224,7 @@ const Diagram = ({ data }) => {
           data={plotData}
           layout={layout}
           config={config}
+          useResizeHandler={true}
           style={{ width: '100%', height: '100%' }}
         />
       </div>
