@@ -13,18 +13,19 @@ body {
   width: 100%;
   position: relative;
   overflow-x: hidden; /* Prevent horizontal scrolling */
-  /* No global scaling here */
 }
 
-/* Main Container (keeping its original size) */
+/* Scale down all elements globally except the main layout */
 .app-container {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
+  transform: scale(0.9);  /* Apply scaling to everything inside the container */
+  transform-origin: top left; /* Scaling will happen from the top-left corner */
 }
 
-/* Main Content Styles */
+/* Ensure the layout (like .main-content) remains unaffected */
 .main-content {
   flex-grow: 1;
   padding: 30px;
@@ -35,9 +36,7 @@ body {
   min-height: 100vh;
   text-align: center;
   transition: margin-left 0.3s ease;
-  /* Apply scaling only to the content, not the container */
-  transform: scale(0.9);
-  transform-origin: top left; /* Scale from the top-left corner */
+  /* No transformation or scaling applied here */
 }
 
 /* When sidebar is collapsed */
