@@ -23,8 +23,7 @@ nltk.download('stopwords')
 app = FastAPI()
 
 # Define allowed origins for CORS (Cross-Origin Resource Sharing)
-origins = ["https://dart-xi.vercel.app/",
-    "https://dart-xi.vercel.app/trends"]
+origins = ["http://localhost:3000"]
 
 # Add middleware to allow CORS requests from specific origins
 app.add_middleware(
@@ -153,38 +152,6 @@ async def upload_csv(file: UploadFile = File(...)):
                     return words[0]
             return None
 
-        def match_theme(text):
-            fw = extract_first_word_after_colon(text)
-            if fw == 'naturvetenskap':
-                return 'Naturvetenskap'
-            if fw == 'medicin':
-                return 'Medicin och Hälsovetenskap'
-            if fw == 'teknik':
-                return 'Teknik'
-            return None
-
-        theme_counts = {'Naturvetenskap': 0, 'Medicin och Hälsovetenskap': 0, 'Teknik': 0}
-        for _, row in data.iterrows():
-            theme = match_theme(str(row['Scbs']))
-            if theme:
-                theme_counts[theme] += 1
-
-        # Plot and save
-        categories = list(theme_counts.keys())
-        counts = list(theme_counts.values())
-        plt.figure(figsize=(10, 6))
-        plt.bar(categories, counts, color=['skyblue', 'lightgreen', 'salmon'])
-        plt.xlabel('Themes')
-        plt.ylabel('Number of Projects')
-        plt.title('Number of Projects in Each Theme')
-        img_path = os.path.join(UPLOAD_DIR, 'chart.png')
-        plt.savefig(img_path)
-        plt.close()
-
-        return JSONResponse({
-            "theme_counts": theme_counts,
-            "chart_image": 'chart.png'
-        })
 
     except Exception as e:
         return JSONResponse(content={"error": str(e)}, status_code=500)

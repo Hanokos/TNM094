@@ -46,10 +46,9 @@ function Trends() {
     formData.append('file', file);
 
     try {
-      const res = await axios.post('https://fastapi-backend-dart.onrender.com/upload-trends/', formData, {
+      const res = await axios.post('http://localhost:8000/upload-trends/', formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
-      
 
       if (res.data.error) {
         setError(res.data.error);
