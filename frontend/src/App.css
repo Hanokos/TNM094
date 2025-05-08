@@ -4,6 +4,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Arial', sans-serif;
+  font-size: 90%; /* Reduce base font size to 90% */
 }
 
 body {
@@ -12,20 +13,10 @@ body {
   min-height: 100vh;
   width: 100%;
   position: relative;
-  overflow-x: hidden; /* Prevent horizontal scrolling */
+  overflow-x: hidden;
 }
 
-/* Scale down all elements globally except the main layout */
-.app-container {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  transform: scale(0.9);  /* Apply scaling to everything inside the container */
-  transform-origin: top left; /* Scaling will happen from the top-left corner */
-}
-
-/* Ensure the layout (like .main-content) remains unaffected */
+/* Main Content Styles */
 .main-content {
   flex-grow: 1;
   padding: 30px;
@@ -36,7 +27,6 @@ body {
   min-height: 100vh;
   text-align: center;
   transition: margin-left 0.3s ease;
-  /* No transformation or scaling applied here */
 }
 
 /* When sidebar is collapsed */
@@ -46,28 +36,31 @@ body {
 
 .content-box {
   background-color: rgba(255, 255, 255, 0.9);
-  padding: 20px;
+  padding: 18px; /* slightly reduced */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   margin-top: 30px;
   width: 80%;
   max-width: 800px;
+  font-size: 90%; /* shrink content text */
 }
 
 input[type="file"] {
-  margin-right: 10px;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ffffff;
+  margin-right: 8px;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 90%;
 }
 
 button:not(.info-btn):not(.close-btn):not(.nav-link):not(.pagination-btn) {
   background-color: #3498db;
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 8px 16px; /* smaller button size */
   border-radius: 5px;
   cursor: pointer;
+  font-size: 90%;
 }
 
 button:not(.info-btn):not(.close-btn):not(.nav-link):not(.pagination-btn):hover {
@@ -75,11 +68,11 @@ button:not(.info-btn):not(.close-btn):not(.nav-link):not(.pagination-btn):hover 
 }
 
 .loading-spinner {
-  border: 4px solid #ffffff;
-  border-top: 4px solid #3498db;
+  border: 3px solid #ffffff;
+  border-top: 3px solid #3498db;
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   animation: spin 1s linear infinite;
   margin: 20px auto;
 }
@@ -87,4 +80,11 @@ button:not(.info-btn):not(.close-btn):not(.nav-link):not(.pagination-btn):hover 
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+/* Scale down Plotly and Chart.js elements if needed */
+.js-plotly-plot,
+.chartjs-render-monitor {
+  transform: scale(0.9);
+  transform-origin: top left;
 }
