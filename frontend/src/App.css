@@ -12,14 +12,12 @@ body {
   min-height: 100vh;
   width: 100%;
   position: relative;
-  overflow: auto; /* Allow scrolling */
-  transform: scale(0.9);  /* Scale down everything by 10% */
-  transform-origin: top left;  /* Ensure the scaling is done from the top-left corner */
+  margin: 0;
+  overflow: hidden; /* Prevent any overflow */
+  height: 100vh; /* Ensure body takes full viewport height */
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  margin: 0;
-  height: 100vh; /* Ensure body takes full viewport height */
+  align-items: flex-start; /* Align content at the top */
 }
 
 /* Main Content Styles */
@@ -35,7 +33,8 @@ body {
   transition: margin-left 0.3s ease;
   width: 100%;
   max-width: 100%;
-  overflow-y: auto; /* Allow vertical scrolling */
+  transform: scale(0.9); /* Scale down content but not the container */
+  transform-origin: top left; /* Ensure the scaling is done from the top-left corner */
 }
 
 /* When sidebar is collapsed */
