@@ -1,0 +1,176 @@
+/* src/components/Trends.css */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+.trends-container {
+  position: relative;              /* make container a positioning context */
+  padding: 20px;
+  font-family: "Poppins", sans-serif;
+  background-color: #ffffff;
+}
+
+.trends-container h1 {
+  color: #467fdb;
+  font-weight: 600;
+  margin-bottom: 20px;
+  text-align: center;
+  animation: fadeIn 0.4s;
+}
+
+.upload-section {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  justify-content: center;
+  animation: fadeInUp 0.4s;
+  position: relative;              /* position context for the image */
+}
+
+.upload-section input[type="file"] {
+  border: 2px dashed #467fdb;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  background: rgba(70, 127, 219, 0.05);
+  color: #666;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.upload-section input[type="file"]:hover {
+  background: rgba(70, 127, 219, 0.1);
+  transform: translateY(-2px);
+}
+
+.upload-section button {
+  background-color: #467fdb;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Poppins", sans-serif;
+}
+
+.upload-section button:hover:enabled {
+  background-color: #335ebf;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(70, 127, 219, 0.2);
+}
+
+.upload-section button:disabled {
+  background-color: #d1d5db;
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+.loading-spinner {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Trend robot image, behind text */
+.trend-image {
+  position: absolute;
+  top: calc(100% + 20px);    /* nudged down from 4px to 20px */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40%;
+  max-width: 400px;
+  pointer-events: none;
+  opacity: 0.9;
+  z-index: 1;                /* image behind */
+}
+
+/* Error message, above the image */
+.error-message {
+  position: relative;
+  z-index: 2;                /* ensure this is above the image */
+  color: #e74c3c;
+  margin-top: 10px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.year-range-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.year-range-container label {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.year-range-container select {
+  margin-left: 8px;
+  padding: 6px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.results-section {
+  margin-top: 30px;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  margin-top: 10px;
+}
+
+.keywords-table {
+  width: max-content;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.keywords-table th,
+.keywords-table td {
+  padding: 14px 16px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.keywords-table th {
+  background-color: #467fdb;
+  color: white;
+  font-weight: 600;
+}
+
+td.highlighted {
+  background-color: #ffe066;
+  font-weight: bold;
+  color: #222;
+  border-radius: 4px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+/* Animation keyframes */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

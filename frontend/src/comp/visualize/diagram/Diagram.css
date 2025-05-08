@@ -1,0 +1,119 @@
+/* src/components/visualize/diagram/Diagram.css */
+.diagram-container {
+  margin-top: 30px;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 8px;
+}
+
+.diagram-container h2 {
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.diagram-tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  gap: 10px;
+}
+
+.diagram-tab {
+  padding: 8px 16px;
+  background: #ddd;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+}
+
+.diagram-tab:hover {
+  background: #ccc;
+}
+
+.diagram-tab.active {
+  background: #467fdb;
+  color: #fff;
+  font-weight: bold;
+}
+
+.diagram-chart {
+  position: relative;
+  width: 100%;
+  min-height: 600px;
+  overflow: visible !important;
+}
+
+.toggle-3d-btn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 2;
+  padding: 6px 12px;
+  background: #467fdb;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.custom-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 10px 20px;
+  margin-bottom: 15px;
+}
+
+.custom-controls label {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+.custom-controls select {
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  box-sizing: border-box;
+}
+
+.plotly .hoverlayer {
+  overflow: visible !important;
+}
+
+.plotly .hovertext {
+  background-color: #fff !important;
+  color: #000 !important;
+  border: 1px solid #333 !important;
+  padding: 6px 8px !important;
+  white-space: nowrap !important;
+  pointer-events: none;
+  z-index: 1000 !important;
+}
+
+svg .hovertext {
+  overflow: visible !important;
+}
+
+.diagram-container,
+.diagram-container * {
+  overflow: visible !important;
+}
+
+/* Disable animation/transition on 3D scatter plot (Plotly WebGL) */
+.diagram-chart .gl-container canvas {
+  transition: none !important;
+  animation: none !important;
+}
+
+
+/* Ensure legend titles with multiple lines look good */
+.plotly-legend-title {
+  white-space: normal !important; /* Allow wrapping */
+  text-align: center; /* Optionally center the text */
+}
