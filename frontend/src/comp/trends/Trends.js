@@ -67,7 +67,7 @@ function Trends() {
       setStartYear(min);
       setEndYear(max);
     } catch {
-      setError('Failed to process file. Please check the file format is CSV and try again.');
+      setError('Failed to process file. Vercel has trouble reaching the backend.');
     } finally {
       setLoading(false);
     }
