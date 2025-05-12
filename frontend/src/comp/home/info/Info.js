@@ -7,7 +7,7 @@ function Info({ closeInfo }) {
       <div className="info-overlay" onClick={closeInfo}></div>
       <div className="info-popup">
         <button className="close-btn" onClick={closeInfo}>✖</button>
-        <h3>How to use D.A.R.T</h3>
+        <h3>How to use D.A.R.T.</h3>
         <h4>A Quick Tutorial</h4>
 
         <section className="info-section">
