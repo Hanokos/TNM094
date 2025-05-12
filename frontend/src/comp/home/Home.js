@@ -26,9 +26,9 @@ function Home() {
       />
 
       <div className="home-heading">
-        <span className="welcome-text">Welcome to D.A.R.T</span>
+        <span className="welcome-text">Welcome to D.A.R.T.</span>
         <span className="dart-text">
-          Data Analytics & Research Visualization Toolkit <strong>(D.A.R.T)</strong> is an application
+          Data Analytics & Research Visualization Toolkit <strong>(D.A.R.T.)</strong> is an application
           designed to visually analyze research applications. Developed by [Group E]
           for the Media Technology Bachelor’s Project TNM094 (2025VT).
         </span>
@@ -36,11 +36,11 @@ function Home() {
           <strong>NOTE:</strong> For a quick tutorial, click the info button in the top-right corner.
         </h3>
         <p>
-          Download our sample data file from our zip (file updated <em>2025-05-07</em>) :
+          Click here to download our sample data file from a zip (file updated <em>2025-05-07</em>) :
           <a href="/example2025.7z" download>Example Data File</a>
         </p>
         <p>
-          <strong>Or</strong> grab your own CSV file from the SWECRIS website :
+          <strong>Or</strong> grab your own CSV-file from the SWECRIS website :
           <a
             href="https://www.vr.se/english/swecris.html"
             target="_blank"
