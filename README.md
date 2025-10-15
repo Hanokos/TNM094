@@ -6,7 +6,7 @@
 ---
 
 <p align="center">
-  <strong>🌜 Read through the instructions below</strong>
+  <strong>🌜 Read through the instructions below and aswell the pdf DEMO_DART</strong>
 </p>
 
 ---
